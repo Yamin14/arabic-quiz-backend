@@ -60,7 +60,7 @@ router.post("/", [
     }
 
     try {
-        const { name, email, password, role } = req.body;
+        const { name, email, password, role, classCode } = req.body;
 
         if (!name || !email || !password) {
             return res.status(400).json({ message: "All fields are required" });
@@ -76,12 +76,12 @@ router.post("/", [
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const newUser = new User({ name, email, password: hashedPassword, role: role || 'student'});
+        const newUser = new User({ name, email, password: hashedPassword, role: role || 'student', classCode});
         await newUser.save();
 
         // create and assign a token
         const savedUser = {
-            id: newUser._id, email: newUser.email, name: newUser.name, role: newUser.role, level: 1, points: 0, quizzesTaken: 0
+            id: newUser._id, email: newUser.email, name: newUser.name, role: newUser.role, classCode: newUser.classCode, level: 1, points: 0, quizzesTaken: 0
         }
         const token = jwt.sign(
             { user: savedUser },

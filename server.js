@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: true,
+  origin: 'https://arabic-quiz-amn.vercel.app',
   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
