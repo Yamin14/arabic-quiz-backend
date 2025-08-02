@@ -10,6 +10,7 @@ const router = express.Router();
 
 // Get users for dashboard
 router.get("/", authMiddleware, async (req, res) => {
+    res.setHeader('Cache-Control', 'no-store');
     const { classCode } = req.user;
     try {
         const users = await User.find({classCode, role: 'student'})
