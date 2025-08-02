@@ -61,7 +61,7 @@ router.post("/login", [
             httpOnly: true,
             secure: process.env.NODE_ENV === "production", // Use secure cookies in production
             sameSite: "Strict" // Prevent CSRF attacks
-        }).status(200).json(userData);
+        }).status(200).json({user: userData, token: token});
 
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
