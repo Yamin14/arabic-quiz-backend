@@ -47,6 +47,7 @@ router.post("/login", [
             email: user.email,
             name: user.name,
             role: user.role,
+            classCode: user.classCode,
             level: user.level,
             points: user.points,
             quizzesTaken: user.quizzesTaken
