@@ -9,12 +9,12 @@ const router = express.Router();
 //get quiz
 router.get('/', authMiddleware, async (req, res) => {
     
-    const { level, category } = req.query;
+    const { level } = req.query;
     
     try {
-        const questions = await Question.find({ category });
+        const questions = await Question.find();
         if (questions.length === 0) {
-            return res.status(404).json({ message: 'No questions found for this category' });
+            return res.status(404).json({ message: 'No questions found' });
         }
 
         const levelQuestions = questions.filter(q => q.level <= level);
